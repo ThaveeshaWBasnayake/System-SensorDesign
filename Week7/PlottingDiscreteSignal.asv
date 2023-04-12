@@ -1,0 +1,200 @@
+x1 = 0:.5:4; %limits the first piecewise function 2sin(pi/4)t
+x2 = -2:.5:0; %limits of the second piece function -t
+x3 = -4:-2; %limits the third function 2
+y1=(2*(sin((pi/4)*x1))); %curve
+y2 = -x2; %slope
+y3 =[2 2 2]; %horizontal
+
+%Start plotting the original discrete time signal
+figure(2); subplot(2,2,1); %creates figure and subplot with 2 rows and 2 columns
+%plot all the signals with respect to one another
+stem(x1,y1,'filled');
+hold on;
+stem(x2,y2,'filled');
+hold on;
+stem(x3,y3,'filled');
+%label the x, y and give title
+xlabel('n');
+ylabel('x(n)');
+title('Orignal Discrete-Time Signal');
+grid on;
+hold on;
+%Sets the values for the axis layout starting from y to x respectively
+axis1=[0 0]; %values for the y-axis
+axis2=[-1 2.5]; %values for y-axis
+axis3=[-5 5]; %values for x-axis
+axis4 =[0 0]; %values for x-axis
+plot(axis1,axis2,axis3,axis4,'LineWidth',1); %plots the cross in cartesian plane
+hold off;
+
+%Shifting the Discrete-Time Signal
+t=-3; 
+%sets values for the y and x axis respectively
+tts1=[0 0]; %values for the y-axis
+tts2=[-1 2.5]; %values for y-axis
+tts3=[(-5-(t)) (5-(t))]; %values for x-axis
+tts4 =[0 0]; %values for x-axis
+
+if t<0 %if statement condition for when t is less than 0
+    subplot(2,2,2);
+
+    %create the plots with the given shifts
+    stem(x1-(t),y1,'filled');
+    hold on;
+    stem(x2-(t),y2,'filled');
+    hold on;
+    stem(x3-(t),y3,'filled');
+
+    %format the graph
+    grid on;
+    xlabel('n');
+    ylabel('x(n)');
+    title('Time-Shifted Discrete Time Signal');
+
+    hold on;
+    plot(axis1,axis2,axis3,axis4,'LineWidth',1); %plots the cross in cartesian plane
+    hold off;
+else
+    subplot(2,2,2);
+    %create the plots with the given shifts
+    stem((x1-t),y1,'filled');
+    hold on;
+    stem((x2-t),y2,'filled');
+    hold on;
+    stem((x3-t),y3,'filled');
+
+    %format the graph
+    grid on;
+    xlabel('n');
+    ylabel('x(n)');
+    title('Time-Shifted Discrete Time Signal');
+
+    hold on;
+    plot(axis1,axis2,axis3,axis4,'LineWidth',1); %plots the cross in cartesian plane
+    hold off;
+end
+
+%Scaling the Discrete Time Signal
+n=1; d=4; %set the integers
+t2=n/d; %equates t2 with the input number
+%set the values for the y and x axis respectively
+tc1 = [0 0];
+tc2 = [-1 2.5];
+tc3 = [-5 5];
+tc4 = [0 0];
+
+if t2==n/d
+    subplot(2,2,3);
+    %plots the graph that has been time shifted
+    stem(((x1-(t)))*(d/n),y1,'filled');
+    hold on;
+    stem(((x2-(t)))*(d/n),y2,'filled');
+    hold on;
+    stem(((x3-(t)))*(d/n),y3,'filled');
+
+    grid on;
+    grid minor; %turns on the minor grid as well for better understanding
+
+    %Label the x and y axis as well as give a title
+    xlabel('n');
+    ylabel('x(n)');
+    title('Scaled Discrete Time Signal');
+
+    hold on;
+    plot(axis1,axis2,(axis3*(d/n)),axis4,'LineWidth',1); %plots the cross in cartesian plane
+    hold off;
+
+else
+    subplot(2,2,3);
+    %plots the graph that has been time shifted
+    stem((((x1-t))*(n/d)),y1,'filled');
+    hold on;
+    stem((((x2-t))*(n/d)),y2,'filled');
+    hold on;
+    stem((((x3-t))*(n/d)),y3,'filled');
+
+    %format the graph by turning grid on and labeling the graph
+    grid on;
+    xlabel('n');
+    ylabel('x(n)');
+    title('Scaled Discrete Time Signal');
+    
+    %plot the changes in the data
+    hold on;
+    plot(axis1,axis2,(axis3*(n/d)),axis4,'LineWidth',1); %plots the cross in cartesian plane
+    hold off;
+end
+
+%Reversing of the Disctrete Time Signal
+t3=-4;
+if t3<0 && t2==n/d
+    subplot(2,2,4);
+    %plots the graph that has been time shifted
+    stem(-((x1-(t)*(d/n))),y1,'filled');
+    hold on;
+    stem(-((x2-(t)*(d/n))),y2,'filled');
+    hold on;
+    stem(-((x3-(t)*(d/n))),y3,'filled');
+
+    %turn on grid and label
+    %format the graph by turning grid on and labeling the graph
+    grid on;
+    grid minor;
+    xlabel('n');
+    ylabel('x(n)');
+    title('Reversed Discrete Time Signal');
+
+    %plot the changes in the data
+    hold on;
+    plot(-(axis1),axis2,-(axis3*(d/n)),axis4,'LineWidth',1); %plots the cross in cartesian plane
+    hold off;
+
+elseif t3>0 && t2==n/d
+    subplot(2,2,4);
+    %plots the graph that has been time shifted
+    stem(-((x1-(t)*(d/n))),y1,'filled');
+    hold on;
+    stem(-((x2-(t)*(d/n))),y2,'filled');
+    hold on;
+    stem(-((x3-(t)*(d/n))),y3,'filled');
+
+    %turn on grid and label
+    %format the graph by turning grid on and labeling the graph
+    grid on;
+    grid minor;
+    xlabel('n');
+    ylabel('x(n)');
+    title('Reversed Discrete Time Signal');
+    h = msgbox('no reverseing done');
+
+    %plot the changes in the data
+    hold on;
+    plot(-(axis1),axis2,-(axis3*(d/n)),axis4,'LineWidth',1); %plots the cross in cartesian plane
+    hold off;
+    h = msgbox('no reverseing done');
+
+elseif t3<0 && t2 ==d/n
+    subplot(2,2,4);
+
+    %plots the graph that has been time shifted
+    stem(-(((x1-(t)*(n/d)))),y1,'filled');
+    hold on;
+    stem(-(((x2-(t)*(n/d)))),y2,'filled');
+    hold on;
+    stem(-(((x3-(t)*(n/d)))),y3,'filled');
+
+    %turn on grid and label
+    %format the graph by turning grid on and labeling the graph
+    grid on;
+    grid minor;
+    xlabel('n');
+    ylabel('x(n)');
+    title('Scaled Discrete Time Signal');
+
+    %plot the changes in the data
+    hold on;
+    plot(-(axis1),axis2,-(axis3*(d/n)),axis4,'LineWidth',1); %plots the cross in cartesian plane
+    hold off;
+    h = msgbox('no reverseing done');
+
+
